@@ -1,0 +1,41 @@
+﻿CREATE TABLE sectors(
+	sector_id NUMBER(6),
+	sector_name VARCHAR2(10),
+	CONSTRAINT sectors_id_PK PRIMARY KEY (sector_id)
+ );
+
+ CREATE TABLE packages(
+	pack_id NUMBER(6),
+	speed VARCHAR2(10),
+	strt_date date,
+	monthly_payment NUMBER(6),
+	sector_id NUMBER(6),
+	CONSTRAINT packages_id_PK PRIMARY KEY (pack_id),
+	CONSTRAINT packages_sectorid_FK FOREIGN KEY (sector_id) REFERENCES sectors (sector_id)
+	);
+
+CREATE TABLE customers(
+	Customer_Id NUMBER(11),
+	First_Name VARCHAR2(25),
+	Last_Name VARCHAR2(25),
+	Birth_Date VARCHAR2(25),
+	Join_Date date,
+	City VARCHAR2(45),
+	State VARCHAR2(25),
+	Street VARCHAR2(40),
+	main_phone_num VARCHAR2(12) NOT NULL,
+	secondary_phone_num VARCHAR2(12),
+	fax VARCHAR2(12),
+	monthly_discount NUMBER(4, 2),
+	pack_id NUMBER(6),
+	CONSTRAINT customers_id_PK PRIMARY KEY (Customer_Id),
+	CONSTRAINT customers_packid_FK FOREIGN KEY (pack_id) REFERENCES packages (pack_id)
+);
+
+ CREATE TABLE pack_grades(
+	grade_id NUMBER(6),
+	grade_name VARCHAR2(25),
+	min_price NUMBER(6),
+	max_price NUMBER(6),
+	CONSTRAINT pack_grades_id_PK PRIMARY KEY (grade_id)
+);
