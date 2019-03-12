@@ -18,13 +18,15 @@ router.post('/login' , function(req , res){
 		{	
 			console.log(result);
 			console.log('failed');
+			res.render('failed');
 		}else{
 			console.log(result);
 			console.log('success');
+			res.render('suc');
 		}
 	});
 	
-	res.send('here');
+	
 
 
 });
