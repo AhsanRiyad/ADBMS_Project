@@ -40,7 +40,7 @@ var dbConfig = require('./dbconfig.js');
 
 
 module.exports ={
-execute: function(obj){
+execute: function(obj , callback){
 
 
 
@@ -85,12 +85,12 @@ oracledb.getConnection(
         if (err) {
           console.error(err.message);
           doRelease(connection);
-          return false;
+          callback([]);
         }
-        console.log(result.metaData); // [ { name: 'DEPARTMENT_ID' }, { name: 'DEPARTMENT_NAME' } ]
+        //console.log(result.metaData); // [ { name: 'DEPARTMENT_ID' }, { name: 'DEPARTMENT_NAME' } ]
         console.log(result.rows);     // [ [ 180, 'Construction' ] ]
         doRelease(connection);
-        return true;
+        callback(result.rows);
       });
   });
 
