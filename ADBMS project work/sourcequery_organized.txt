@@ -1,0 +1,283 @@
+1.
+create table Admin
+(
+a_id number(5),
+a_password varchar2(15),
+a_address varchar2(30) not null,
+a_email varchar2(30) unique,
+a_mobile number(11) not null,
+u_status varchar2(30) not null,
+a_type varchar2(30),
+CONSTRAINT Admin_pk PRIMARY KEY (a_id),
+CONSTRAINT Admin_unique unique (a_type)
+);
+2.
+create table Seller
+(
+s_id number(5),
+s_password varchar2(30),
+s_address varchar2(30),
+s_email varchar2(30) unique,
+s_mobile number(11) unique,
+u_status varchar2(30) not null,
+s_type varchar2(30),
+constraint  Seller_pk primary key(s_id),
+constraint  Seller_unique unique(s_type)
+);
+3.
+create table G_user
+(
+g_u_id number(5) primary key,
+g_u_password varchar2(15),
+g_u_address varchar2(30) not null,
+g_u_email varchar2(30) unique,
+g_u_mobile number(11) not null,
+u_status varchar2(30) not null,
+g_u_type varchar2(30) unique
+);
+4.
+create table Seller_name
+(
+s_id number(5),
+s_type varchar2(30),
+first_name varchar2(30),
+last_name varchar2(30),
+constraint s_type_fk foreign key(s_type) references Seller(s_type),
+constraint s_id_fk foreign key(s_id) references Seller(s_id)
+
+);
+5.
+CREATE TABLE Admin_name 
+   (	a_id NUMBER(5), 
+	a_type varchar2(30), 
+	first_name varchar2(30), 
+	last_name varchar2(30), 
+	 CONSTRAINT a_type_fk FOREIGN KEY (a_type)
+	  REFERENCES  Admin (a_type), 
+	 CONSTRAINT a_id_fk FOREIGN KEY (a_id)
+	  REFERENCES  Admin (a_id)
+   );
+6.
+CREATE TABLE G_user_name 
+   (	g_u_id NUMBER(5), 
+	g_u_type varchar2(30), 
+	first_name varchar2(30), 
+	last_name varchar2(30), 
+	 CONSTRAINT g_u_type_fk FOREIGN KEY (g_u_type)
+	  REFERENCES  G_user (g_u_type), 
+	 CONSTRAINT g_u_id_fk FOREIGN KEY (g_u_id)
+	  REFERENCES  G_user (g_u_id)
+   );
+7.
+create table Msg
+(
+msg_id number(5),
+msg_text varchar(30),
+msg_status varchar2(30),
+msg_reply varchar2(30),
+msg_date number(10),
+CONSTRAINT Msg_pk PRIMARY KEY (msg_id)
+);
+8.CREATE TABLE Msg_seller_admin 
+   (	a_id NUMBER(5), 
+	a_type varchar2(30), 
+	s_id NUMBER(5), 
+	s_type varchar2(30),
+        msg_id NUMBER(5),    
+	 CONSTRAINT a_typea_fk FOREIGN KEY (a_type)
+	  REFERENCES  Admin (a_type), 
+	 CONSTRAINT a_ida_fk FOREIGN KEY (a_id)
+	  REFERENCES  Admin (a_id), 
+         CONSTRAINT s_typeb_fk FOREIGN KEY (s_type)
+	  REFERENCES  Seller (s_type),
+         CONSTRAINT s_idb_fk FOREIGN KEY (s_id)
+	  REFERENCES  Seller (s_id),  
+         CONSTRAINT msg_id1_fk FOREIGN KEY (msg_id)
+	  REFERENCES  Msg (msg_id)
+   );
+9.
+CREATE TABLE Msg_g_user_admin 
+   (	a_id NUMBER(5), 
+	a_type varchar2(30), 
+	s_id NUMBER(5), 
+	s_type varchar2(30),
+        msg_id NUMBER(5),    
+	 CONSTRAINT at_type_fk FOREIGN KEY (a_type)
+	  REFERENCES  Admin (a_type), 
+	 CONSTRAINT ai_id_fk FOREIGN KEY (a_id)
+	  REFERENCES  Admin (a_id), 
+         CONSTRAINT st_type_fk FOREIGN KEY (s_type)
+	  REFERENCES  Seller (s_type),
+         CONSTRAINT si_id_fk FOREIGN KEY (s_id)
+	  REFERENCES  Seller (s_id),  
+         CONSTRAINT msgsid_fk FOREIGN KEY (msg_id)
+	  REFERENCES  Msg (msg_id)
+   );
+10.
+create table Promo
+(
+   promo_id number(5),
+   promo_desc varchar2(30),
+   Promo_expiry varchar2(30) not null,
+   promo_percentage number(20),
+   promo_status varchar2(20),
+   promo_limit varchar2(30),
+   promo_use_count number(10),
+   a_id number(5),
+   CONSTRAINT Promo_pk PRIMARY KEY (promo_id),
+   CONSTRAINT a_idi_fk FOREIGN KEY (a_id) REFERENCES Admin(a_id)
+);
+
+
+
+11.
+create table Promo_use
+(
+   promo_id number(5),
+  user_id number(5),
+user_type varchar2(30),
+user_use_date number(22),
+user_use_count number(20),
+   CONSTRAINT Promo_use_pk PRIMARY KEY (user_id),
+   CONSTRAINT Promo_use_unique unique (user_type),
+   CONSTRAINT promid_fk FOREIGN KEY (promo_id) REFERENCES Promo(promo_id)
+);
+12.
+create table Wishlist
+(
+   wishlist_id number(5),
+   wishlist_status varchar2(30),
+   user_id number(5),
+   g_u_type varchar2(30),
+   CONSTRAINT wishlist_pk PRIMARY KEY (wishlist_id),
+   CONSTRAINT userid_fk FOREIGN KEY (user_id) REFERENCES Promo_use(user_id),
+   CONSTRAINT gutype_fk FOREIGN KEY ( g_u_type) REFERENCES G_user( g_u_type)
+);
+13.
+create table Categories
+(
+ category_id number(5),
+ category_name varchar2(30),
+CONSTRAINT Categories_pk PRIMARY KEY (category_id)
+);
+
+14.
+create table Products
+(
+   product_id number(5),
+   product_name varchar2(30) ,
+   product_price varchar2(30) unique,
+   product_avlble varchar2(30) not null,
+   product_sell_price number(5) unique,
+   product_original_price number(5) unique,
+   category_id number(5),
+   CONSTRAINT Products_pk PRIMARY KEY (product_id),
+   CONSTRAINT categoryid10_fk FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+  
+);
+15.
+create table P_include_wishlist
+(
+   wishlist_id number(5),
+   product_id number(5) unique,
+   product_qntity varchar2(30) not null,
+   constraint P_include_wishlist_pk primary key( wishlist_id),
+   CONSTRAINT wishlistid1_fk FOREIGN KEY (wishlist_id) REFERENCES Wishlist(wishlist_id),
+   CONSTRAINT productid1_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+16.
+create table Return_t
+(
+   return_id number(5),
+   return_desc varchar2(30),
+   return_date number(20),
+   CONSTRAINT Return_t_pk PRIMARY KEY (return_id)
+);
+
+
+17.
+create table Order_t
+(
+   order_id number(5),
+   order_date number(20),
+   payment_method varchar2(30),
+   payment_status varchar2(30),
+   return_id number(5),
+   CONSTRAINT Order_t_pk PRIMARY KEY (order_id),
+   CONSTRAINT returnid_fk FOREIGN KEY (return_id) REFERENCES Return_t(return_id)
+)
+18.
+create table Cart
+(
+   cart_id number(5),
+   cart_status varchar2(30) unique,
+   user_id number(5),
+   g_u_type varchar2(30),
+   order_id number(5),
+   CONSTRAINT Cart_pk PRIMARY KEY (cart_id),
+   CONSTRAINT userid1_fk FOREIGN KEY (user_id) REFERENCES Promo_use(user_id),
+   CONSTRAINT gutype1_fk FOREIGN KEY ( g_u_type) REFERENCES G_user( g_u_type),
+   CONSTRAINT orderid1_fk FOREIGN KEY (order_id) REFERENCES Order_t(order_id)
+);
+19.
+create table P_include_cart
+(
+   cart_id number(5),
+   product_id number(5) unique,
+   product_qntity varchar2(30) not null,
+   constraint P_include_cart_pk primary key(cart_id),
+   CONSTRAINT cartid3_fk FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
+   CONSTRAINT productid2_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+20.
+create table Supply_order
+(
+ supply_id number(5),
+ supply_date number(10) not null,
+supply_status varchar2(30),
+s_id number(5),
+CONSTRAINT Supply_order_pk PRIMARY KEY (supply_id),
+CONSTRAINT sid3_fk FOREIGN KEY (s_id) REFERENCES Seller(s_id)
+);
+21.
+create table Supply_contains
+(
+   supply_id number(5),
+   product_id number(5),
+   product_qntity varchar2(30) not null,
+   CONSTRAINT supplyid1_fk FOREIGN KEY (supply_id) REFERENCES Supply_order(supply_id),
+   CONSTRAINT productid3_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+22.
+create table Give_review
+(
+review_id number(5),
+user_id number(5),
+s_id number(5),
+CONSTRAINT Give_review_pk PRIMARY KEY (review_id),
+CONSTRAINT review2_fk FOREIGN KEY (review_id) REFERENCES review(review_id),
+CONSTRAINT sid4_fk FOREIGN KEY (s_id) REFERENCES Seller(s_id),
+ CONSTRAINT userid5_fk FOREIGN KEY (user_id) REFERENCES Promo_use(user_id)
+);
+23.
+create table review
+(
+review_id number(5),
+review_text varchar2(30),
+review_status varchar2(30),
+review_date number(10) not null,
+product_id number(5),
+CONSTRAINT review_pk PRIMARY KEY (review_id),
+ CONSTRAINT productid4_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+24.
+create table visit
+(
+   N_user_id number(5),
+   product_id number(5),
+   user_ip number(5) not null,
+   hit_count number(5) not null,
+   CONSTRAINT visit_pk PRIMARY KEY ( N_user_id),
+   CONSTRAINT productid5_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
