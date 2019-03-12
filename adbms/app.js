@@ -17,6 +17,11 @@ app.use('/auth' , auth);
 
 
 
+app.use('/lib/img', express.static(__dirname + '/lib/img/'));
+app.use('/lib/js', express.static( __dirname + '/lib/js/'));
+app.use('/lib/css', express.static( __dirname + '/lib/css/'));
+
+
 // routes
 app.get('/' , (req,res)=>{
 
@@ -24,10 +29,18 @@ app.get('/' , (req,res)=>{
 	res.render('login');
 
 
-	
+}
+);
+
+app.post('/' , (req,res)=>{
+
+
+	res.render('login');
+
 
 }
 );
+
 
 
 app.listen(port, ()=>console.log('server started at port '+port));
