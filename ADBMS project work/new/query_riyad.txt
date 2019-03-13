@@ -1,39 +1,217 @@
 create table Admin
 (
-a_id number(5) unique,
+a_id number(5),
 a_password varchar2(15),
 a_address varchar2(30) not null,
 a_email varchar2(30) unique,
 a_mobile number(11) not null,
 u_status varchar2(30) not null,
-a_type varchar2(30),
-CONSTRAINT Admin_pk PRIMARY KEY (a_id , a_type)
+CONSTRAINT Admin_pk PRIMARY KEY (a_id)
 
 )
 
+
 create table Seller
 (
-s_id number(5) unique,
+s_id number(5) ,
 s_password varchar2(30),
 s_address varchar2(30),
 s_email varchar2(30) unique,
 s_mobile number(11) unique,
 u_status varchar2(30) not null,
-s_type varchar2(30),
-constraint  Seller_pk primary key(s_id , s_type)
+constraint  Seller_pk primary key(s_id )
 );
 
 
 create table G_user
 (
-g_u_id number(5) unique ,
+g_u_id number(5),
 g_u_password varchar2(15),
 g_u_address varchar2(30) not null,
 g_u_email varchar2(30) unique,
 g_u_mobile number(11) not null,
 u_status varchar2(30) not null,
-g_u_type varchar2(30) , 
-constraint  g_user_pk primary key(g_u_id , g_u_type )
+constraint  g_user_pk primary key(g_u_id )
 );
+
+
+create table Seller_name
+(
+s_id number(5),
+first_name varchar2(30),
+last_name varchar2(30),
+constraint s_id_fk foreign key(s_id) references Seller(s_id),
+constraint seller_name_pk primary key (s_id )
+);
+
+CREATE TABLE Admin_name 
+   (	a_id NUMBER(5), 
+	first_name varchar2(30), 
+	last_name varchar2(30), 
+	 CONSTRAINT a_id_fk FOREIGN KEY (a_id)
+	  REFERENCES  Admin (a_id),
+constraint admin_name_pk primary key (a_id )
+
+   );
+
+
+CREATE TABLE G_user_name 
+   (	g_u_id NUMBER(5), 
+	first_name varchar2(30), 
+	last_name varchar2(30), 
+	 CONSTRAINT g_u_id_fk FOREIGN KEY (g_u_id)
+	  REFERENCES  G_user (g_u_id),
+constraint g_u_name_pk primary key (g_u_id )
+   );
+
+
+create table Promo
+(
+   promo_id number(5),
+   promo_desc varchar2(30),
+   Promo_expiry date ,
+   promo_percentage number(20),
+   promo_status varchar2(20),
+   promo_limit varchar2(30),
+   promo_use_count number(10),
+   a_id number(5),
+   CONSTRAINT Promo_pk PRIMARY KEY (promo_id),
+   CONSTRAINT a_idi_fk FOREIGN KEY (a_id) REFERENCES Admin(a_id)
+);
+
+
+create table Promo_use
+(
+   promo_id number(5),
+  user_id number(5),
+user_type varchar2(30),
+user_use_date date,
+user_use_count number(20),
+   CONSTRAINT promid_fk FOREIGN KEY (promo_id) REFERENCES Promo(promo_id),
+ CONSTRAINT promid_user_fk FOREIGN KEY (user_id) REFERENCES G_user(g_u_id ),
+CONSTRAINT Promo_use_pk PRIMARY KEY (user_id , promo_id)
+
+);
+
+
+create table Categories
+(
+ category_id number(5),
+ category_name varchar2(30),
+CONSTRAINT Categories_pk PRIMARY KEY (category_id)
+);
+
+
+
+create table Products
+(
+   product_id number(5),
+   product_name varchar2(30) ,
+   product_price varchar2(30) ,
+   product_avlble varchar2(30) ,
+   product_sell_price number(5) ,
+   product_original_price number(5) ,
+   category_id number(5),
+   CONSTRAINT Products_pk PRIMARY KEY (product_id),
+   CONSTRAINT Products_fk FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+  
+);
+
+
+
+create table Order_t
+(
+   order_id number(5),
+   order_date date,
+   payment_method varchar2(30),
+   payment_status varchar2(30),
+   CONSTRAINT Order_t_pk PRIMARY KEY (order_id)
+ 
+)
+
+
+
+create table Cart
+(
+   cart_id number(5),
+   cart_status varchar2(30) ,
+   g_u_id  number(5),
+   order_id number(5),
+   CONSTRAINT Cart_pk PRIMARY KEY (cart_id),
+   CONSTRAINT userid1_fk FOREIGN KEY (g_u_id) REFERENCES G_user(g_u_id),
+   CONSTRAINT orderid1_fk FOREIGN KEY (order_id) REFERENCES Order_t(order_id)
+);
+
+
+
+create table P_include_cart
+(
+   cart_id number(5),
+   product_id number(5) ,
+   product_qntity varchar2(30) ,
+   constraint P_include_cart_pk primary key(cart_id , product_id),
+   CONSTRAINT cartid3_fk FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
+   CONSTRAINT productid2_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+
+
+create table Supply_order
+(
+ supply_id number(5),
+ supply_date date ,
+supply_status varchar2(30),
+s_id number(5),
+CONSTRAINT Supply_order_pk PRIMARY KEY (supply_id),
+CONSTRAINT sid3_fk FOREIGN KEY (s_id) REFERENCES Seller(s_id)
+);
+
+
+
+
+create table Supply_contains
+(
+   supply_id number(5),
+   product_id number(5),
+   product_qntity varchar2(30) ,
+   CONSTRAINT supplyid1_fk FOREIGN KEY (supply_id) REFERENCES Supply_order(supply_id),
+   CONSTRAINT productid3_fk FOREIGN KEY (product_id) REFERENCES Products(product_id),
+CONSTRAINT Supply_contains_pk PRIMARY KEY (supply_id , product_id)
+   
+);
+
+
+create table review
+(
+review_id number(5),
+review_text varchar2(30),
+review_status varchar2(30),
+review_date date ,
+product_id number(5),
+CONSTRAINT review_pk PRIMARY KEY (review_id),
+ CONSTRAINT productid4_fk FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+
+
+
+create table Give_review
+(
+review_id number(5),
+user_id number(5),
+s_id number(5),
+CONSTRAINT Give_review_pk PRIMARY KEY (review_id , user_id , s_id ),
+CONSTRAINT review2_fk FOREIGN KEY (review_id) REFERENCES review(review_id),
+CONSTRAINT sid4_fk FOREIGN KEY (s_id) REFERENCES Seller(s_id),
+ CONSTRAINT userid5_fk FOREIGN KEY (user_id) REFERENCES G_user(g_u_id )
+);
+
+
+
+
+
+
+
+
 
 

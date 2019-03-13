@@ -14,26 +14,25 @@ CONSTRAINT Admin_pk PRIMARY KEY (a_id , a_type),
 2.
 create table Seller
 (
-s_id number(5),
+s_id number(5) unique,
 s_password varchar2(30),
 s_address varchar2(30),
 s_email varchar2(30) unique,
 s_mobile number(11) unique,
 u_status varchar2(30) not null,
 s_type varchar2(30),
-constraint  Seller_pk primary key(s_id),
-constraint  Seller_unique unique(s_type)
+constraint  Seller_pk primary key(s_id , s_type)
 );
 3.
 create table G_user
 (
-g_u_id number(5) primary key,
+g_u_id number(5) unique primary key,
 g_u_password varchar2(15),
 g_u_address varchar2(30) not null,
 g_u_email varchar2(30) unique,
 g_u_mobile number(11) not null,
 u_status varchar2(30) not null,
-g_u_type varchar2(30) unique
+g_u_type varchar2(30)  primary key
 );
 4.
 create table Seller_name
@@ -43,7 +42,8 @@ s_type varchar2(30),
 first_name varchar2(30),
 last_name varchar2(30),
 constraint s_type_fk foreign key(s_type) references Seller(s_type),
-constraint s_id_fk foreign key(s_id) references Seller(s_id)
+constraint s_id_fk foreign key(s_id) references Seller(s_id),
+constraint seller_name_pk primary key (s_id  , s_type )
 
 );
 5.
