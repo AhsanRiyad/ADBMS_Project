@@ -1,0 +1,39 @@
+create table Admin
+(
+a_id number(5) unique,
+a_password varchar2(15),
+a_address varchar2(30) not null,
+a_email varchar2(30) unique,
+a_mobile number(11) not null,
+u_status varchar2(30) not null,
+a_type varchar2(30),
+CONSTRAINT Admin_pk PRIMARY KEY (a_id , a_type)
+
+)
+
+create table Seller
+(
+s_id number(5) unique,
+s_password varchar2(30),
+s_address varchar2(30),
+s_email varchar2(30) unique,
+s_mobile number(11) unique,
+u_status varchar2(30) not null,
+s_type varchar2(30),
+constraint  Seller_pk primary key(s_id , s_type)
+);
+
+
+create table G_user
+(
+g_u_id number(5) unique ,
+g_u_password varchar2(15),
+g_u_address varchar2(30) not null,
+g_u_email varchar2(30) unique,
+g_u_mobile number(11) not null,
+u_status varchar2(30) not null,
+g_u_type varchar2(30) , 
+constraint  g_user_pk primary key(g_u_id , g_u_type )
+);
+
+

@@ -1,15 +1,15 @@
 1.
 create table Admin
 (
-a_id number(5),
+a_id number(5) unique,
 a_password varchar2(15),
 a_address varchar2(30) not null,
 a_email varchar2(30) unique,
 a_mobile number(11) not null,
 u_status varchar2(30) not null,
 a_type varchar2(30),
-CONSTRAINT Admin_pk PRIMARY KEY (a_id),
-CONSTRAINT Admin_unique unique (a_type)
+CONSTRAINT Admin_pk PRIMARY KEY (a_id , a_type),
+
 );
 2.
 create table Seller
