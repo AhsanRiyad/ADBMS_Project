@@ -44,7 +44,6 @@ last_name varchar2(30),
 constraint s_type_fk foreign key(s_type) references Seller(s_type),
 constraint s_id_fk foreign key(s_id) references Seller(s_id),
 constraint seller_name_pk primary key (s_id  , s_type )
-
 );
 5.
 CREATE TABLE Admin_name 
