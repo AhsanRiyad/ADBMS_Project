@@ -39,8 +39,8 @@ echo "<table border='1'>
 			while($row = mysqli_fetch_array($result))
 			{
 				echo "<tr>";
-				echo "<td>" . $row['med_name'] . "</td>";
-				echo "<td>" . $row['sell_count'] . "</td>";
+				echo "<td>" . $row['MED_NAME'] . "</td>";
+				echo "<td>" . $row['SELL_COUNT'] . "</td>";
 				echo "</tr>";
 			}
 			echo "</table>";

@@ -29,7 +29,7 @@
         $result = executeSQL($sql);
         
         $persons = array();
-        for($i=0; $row=mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row=oci_fetch_array($result); ++$i){
             $persons[$i] = $row;
         }
         
@@ -41,7 +41,7 @@
         $result = executeSQL($sql);
 		
 		$persons = array();
-        for($i=0; $row=mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row=oci_fetch_array($result); ++$i){
             $persons[$i] = $row;
         }
         
@@ -52,7 +52,7 @@
         $sql = "SELECT * FROM customer WHERE id=$personId";        
         $result = executeSQL($sql);
         
-        $person = mysqli_fetch_assoc($result);
+        $person = oci_fetch_array($result);
         
         return $person;
     }  
@@ -61,7 +61,7 @@
         $sql = "SELECT * FROM login WHERE uName='$username' AND pswrd='$password'";        
         $result = executeSQL($sql);
           
-        $row = mysqli_fetch_assoc($result);
+        $row = oci_fetch_array($result);
         
         return $row;
     }    
@@ -71,7 +71,7 @@
         $result = executeSQL($sql);
         
         $persons = array();
-        for($i=0; $row = mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row = oci_fetch_array($result); ++$i){
             $persons[$i] = $row;
         }
         
@@ -83,7 +83,7 @@
         $result = executeSQL($sql);
         
         $persons = array();
-        for($i=0; $row = mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row = oci_fetch_array($result); ++$i){
             $persons[$i] = $row;
         }
         
@@ -95,7 +95,7 @@
         $result = executeSQL($sql);
         
         $persons = array();
-        for($i=0; $row = mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row = oci_fetch_array($result); ++$i){
             $persons[$i] = $row;
         }
         

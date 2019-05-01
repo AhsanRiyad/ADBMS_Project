@@ -106,7 +106,7 @@ CREATE TABLE login (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `uName`, `pswrd`, `role`) VALUES
+INSERT INTO login (id, uName, pswrd, role) VALUES
 (1, 'ani', '123', 'customer'),
 (2, 'admin', '1', 'admin'),
 (3, '', '', ''),
@@ -115,6 +115,18 @@ INSERT INTO `login` (`id`, `uName`, `pswrd`, `role`) VALUES
 (6, 'sami', '258', 'customer'),
 (7, 'faysal', '123', 'admin'),
 (8, 'faad', '123', 'admin');
+
+
+INSERT INTO login (id, uName, pswrd, role) VALUES
+(1, 'ani', '123', 'customer');
+
+INSERT INTO login (id, uName, pswrd, role) VALUES
+(2, 'admin', '1', 'admin');
+
+
+
+
+
 
 -- --------------------------------------------------------
 

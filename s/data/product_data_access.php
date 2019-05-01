@@ -24,7 +24,7 @@
         $result = executeSQL($sql);
         
         $medicines = array();
-        for($i=0; $row=mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row=oci_fetch_array($result); ++$i){
             $product[$i] = $row;
         }
         
@@ -34,7 +34,7 @@
         $sql = "SELECT * FROM product WHERE pro_id=$ProductId";        
         $result = executeSQL($sql);
         
-        $product = mysqli_fetch_assoc($result);
+        $product = oci_fetch_array($result);
         
         return $product;
     } 
@@ -43,7 +43,7 @@
         $result = executeSQL($sql);
         
         $product = array();
-        for($i=0; $row = mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row = oci_fetch_array($result); ++$i){
             $product[$i] = $row;
         }
         
@@ -54,7 +54,7 @@
         $result = executeSQL($sql);
         
         $product = array();
-        for($i=0; $row = mysqli_fetch_assoc($result); ++$i){
+        for($i=0; $row = oci_fetch_array($result); ++$i){
             $product[$i] = $row;
         }
         return $product;
