@@ -82,7 +82,7 @@ CREATE TABLE order_report (
 /
 
 drop table product;
-
+/
 CREATE TABLE product (
   pro_id number(30) ,
   pro_name varchar(50) ,
@@ -91,4 +91,6 @@ CREATE TABLE product (
 ) ;
 
 
+/
+commit;
 /
