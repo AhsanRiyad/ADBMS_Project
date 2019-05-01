@@ -8,14 +8,27 @@
     $nameErr = $emailErr = "";
 ?>
 <?php
-$con=mysqli_connect("127.0.0.1","root","","sheba");
+/*$con=mysqli_connect("127.0.0.1","root","","sheba");
 // Check connection
 if (mysqli_connect_errno())
 {
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
+
 $result = mysqli_query($con,"SELECT * FROM medicine ORDER BY medicine.sell_count DESC ");
+*/
+
+$con=oci_connect('sheba', '1234', 'localhost/XE');
+
+if (!$con) {
+    $e = oci_error();
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
+
+$result  = oci_parse($con, "SELECT * FROM medicine ORDER BY medicine.sell_count DESC ");
+ oci_execute($result );
+
 
 echo "<table border='1'>
 			<tr>
@@ -32,9 +45,9 @@ echo "<table border='1'>
 			}
 			echo "</table>";
 
-mysqli_close($con);
+/*mysqli_close($con);*/
 			
-			
+oci_close($con);		
         
 
 

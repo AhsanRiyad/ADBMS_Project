@@ -54,6 +54,18 @@ INSERT INTO `customer` (`id`, `name`, `email`, `uName`, `pswrd`, `gender`, `dob`
 (8, '', '', 'faysal', '123', '', '', '', 0),
 (9, '', '', 'faad', '123', '', '', '', 0);
 
+
+
+
+
+
+INSERT INTO customer (id, name, email, uName, pswrd, gender, dob, blood_group, buy_count) VALUES
+(2, 'Anika Khaled', 'anikakhaled@yahoo.com', 'ani', '123', 'female', '1995-10-09', 'A+', 5)
+
+
+
+
+
 -- --------------------------------------------------------
 
 --
