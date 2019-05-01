@@ -51,11 +51,11 @@
 
         <?php foreach ($medicines as $medicine) { ?>
             <tr>
-                <td><?= $medicine['donor_id'] ?></td>
-                <td><?= $medicine['donar_name'] ?></td>
-                <td><?= $medicine['donar_BG'] ?></td>
-                <td><?= $medicine['donar_contact'] ?></td>
-                <td><?= $medicine['donar_area'] ?></td>
+                <td><?= $medicine['DONOR_ID'] ?></td>
+                <td><?= $medicine['DONAR_NAME'] ?></td>
+                <td><?= $medicine['DONAR_BG'] ?></td>
+                <td><?= $medicine['DONAR_CONTACT'] ?></td>
+                <td><?= $medicine['DONAR_AREA'] ?></td>
             </tr>
         <?php }
          ?>

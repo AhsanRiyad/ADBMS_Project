@@ -52,12 +52,12 @@
 
         <?php foreach ($Product as $Product) { ?>
             <tr>
-                <td><?= $Product['pro_id'] ?></td>
-                <td><?= $Product['pro_name'] ?></td>
-                <td><?= $Product['pro_quan'] ?></td>
-				<td><?= $Product['pro_price'] ?></td>
-                <td><a href="update_product.php?id=<?= $Product['pro_id'] ?>">edit</a></td>
-                <td><a href="delete_product.php?id=<?= $Product['pro_id'] ?>">delete</a></td>
+                <td><?= $Product['PRO_ID'] ?></td>
+                <td><?= $Product['PRO_NAME'] ?></td>
+                <td><?= $Product['PRO_QUAN'] ?></td>
+				<td><?= $Product['PRO_PRICE'] ?></td>
+                <td><a href="update_product.php?id=<?= $Product['PRO_ID'] ?>">edit</a></td>
+                <td><a href="delete_product.php?id=<?= $Product['PRO_ID'] ?>">delete</a></td>
             </tr>
         <?php }
          ?>

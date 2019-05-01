@@ -9,8 +9,12 @@
         //$med = getMedicinesByName($med);
 
         $ProductID = trim($_GET['pro_id']);                      
-        $Product = getProductById($ProductID);
+        $GLOBALS['Product'] = getProductById($ProductID);
 		var_dump($Product);
+    }
+    else{
+        echo 'id not found';
+        die();
     }
 ?> 
 
@@ -36,12 +40,12 @@
             <tr>
                 <td>Medicine Name :</td>
                 <td>
-                    <?= $Product['pro_name']?>  
+                    <?= $Product['PRO_NAME']?>  
                 </td>
             </tr>
             <tr>
                 <td>Id:</td>
-                <td><?= $Product['pro_id']?></td>      
+                <td><?= $Product['PRO_ID']?></td>      
             </tr>                  
         </table>
         <hr/>

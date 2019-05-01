@@ -1,13 +1,13 @@
 <?php require_once "data_access.php"; ?>
 <?php
     function addPersonToDb($person){
-        $sql = "INSERT INTO customer(id, name, email, uName, pswrd, gender, dob, blood_group) VALUES (NULL, '$person[name]', '$person[email]', '$person[userName]', '$person[password]', '$person[gender]', '$person[dob]', '$person[blood]')";
+        $sql = "INSERT INTO customer(id, name, email, uName, pswrd, gender, dob, blood_group) VALUES (ID.nextval, '$person[name]', '$person[email]', '$person[userName]', '$person[password]', '$person[gender]', '$person[dob]', '$person[blood]')";
         $result = executeSQL($sql);
         return $result;
     }
     
     function addLoginToDb($login){
-        $sql = "INSERT INTO login(id, uName, pswrd, role) VALUES (NULL, '$login[userName]', '$login[password]', '$login[role]')";
+        $sql = "INSERT INTO login(id, uName, pswrd, role) VALUES (ID.nextval, '$login[userName]', '$login[password]', '$login[role]')";
         $result = executeSQL($sql);
         return $result;
     }

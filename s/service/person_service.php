@@ -40,7 +40,7 @@
         $persons  = getAllPersons();
         $isUnique = true;
         foreach($persons as $person){
-            if($person['email']==$personEmail){
+            if($person['EMAIL']==$personEmail){
                 $isUnique = false;
                 break;
             }
@@ -52,7 +52,7 @@
         $persons  = getAllPersons();
         $isUnique = true;
         foreach($persons as $person){
-            if($person['uName']==$personUName){
+            if($person['UNAME']==$personUName){
                 $isUnique = false;
                 break;
             }
@@ -64,7 +64,7 @@
         $persons  = getAllPersons();
         $isUnique = true;
         foreach($persons as $person){
-            if($person['id']!=$personId && $person['email']==$personEmail){
+            if($person['ID']!=$personId && $person['EMAIL']==$personEmail){
                 $isUnique = false;
                 break;
             }
@@ -76,7 +76,7 @@
         $persons = getAllPersons();
         $isValid = false;
         foreach($persons as $person){
-            if($person['id']==$personId){
+            if($person['ID']==$personId){
                 $isValid = true;
                 break;
             }

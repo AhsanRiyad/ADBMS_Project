@@ -53,14 +53,14 @@
 
         <?php foreach ($medicines as $medicine) { ?>
             <tr>
-                <td><?= $medicine['id'] ?></td>
-                <td><?= $medicine['med_name'] ?></td>
-                <td><?= $medicine['indication'] ?></td>
-                <td><?= $medicine['generic'] ?></td>
-                <td><?= $medicine['price'] ?></td>
-                <td><?= $medicine['quantity'] ?></td>
-                <td><a href="update_medicine.php?id=<?= $medicine['id'] ?>">edit</a></td>
-                <td><a href="delete_medicine.php?id=<?= $medicine['id'] ?>">delete</a></td>
+                <td><?= $medicine['ID'] ?></td>
+                <td><?= $medicine['MED_NAME'] ?></td>
+                <td><?= $medicine['INDICATION'] ?></td>
+                <td><?= $medicine['GENERIC'] ?></td>
+                <td><?= $medicine['PRICE'] ?></td>
+                <td><?= $medicine['QUANTITY'] ?></td>
+                <td><a href="update_medicine.php?id=<?= $medicine['ID'] ?>">edit</a></td>
+                <td><a href="delete_medicine.php?id=<?= $medicine['ID'] ?>">delete</a></td>
             </tr>
         <?php }
          ?>

@@ -29,9 +29,6 @@ if (!$con) {
 $result = oci_parse($con, "SELECT * FROM customer ORDER BY 'buy_count' DESC ");
  oci_execute($result);
 
-
-
-
 echo "<table border='1'>
 			<tr>
 			<th>Name</th>

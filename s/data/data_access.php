@@ -29,11 +29,14 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
+
+//echo $sql;
 $result = oci_parse($conn, $sql);
 oci_execute($result);
 
-oci_close($conn);
+
 return $result;
+oci_close($conn);
 }
 /*echo "<table border='1'>\n";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

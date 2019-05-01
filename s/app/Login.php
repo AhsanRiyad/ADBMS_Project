@@ -19,12 +19,12 @@
             $login['pswrd'] = $password;
         $login = getloginInfoFromDb($uname, $password);
 
-        if($login['role']=="customer")
+        if($login['ROLE']=="customer")
         {
-              $_SESSION['uName'] = $login['uName'];
+              $_SESSION['uName'] = $login['UNAME'];
               header("location:user_index.php");
          }
-        elseif($login['role']=="admin") 
+        elseif($login['ROLE']=="admin") 
     	{
         	echo "<script>
                         document.location='../admin/Admin_index.php';

@@ -35,12 +35,12 @@
             <tr>
                 <td>Medicine Name :</td>
                 <td>
-                    <?= $medicine['med_name']?>  
+                    <?= $medicine['MED_NAME']?>  
                 </td>
             </tr>
             <tr>
                 <td>Id:</td>
-                <td><?= $medicine['id']?></td>      
+                <td><?= $medicine['ID']?></td>      
             </tr>                  
         </table>
         <hr/>

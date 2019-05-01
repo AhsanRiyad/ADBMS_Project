@@ -51,27 +51,27 @@
             </tr> -->
             <tr>
                 <td>Medicine Name</td>
-                <td><input name="medName" value="<?= $medicine['med_name']?>"/></td>
+                <td><input name="medName" value="<?= $medicine['MED_NAME']?>"/></td>
                 
             </tr>
             <tr>
                 <td>Indication</td>
-                <td><input name="indication" value="<?= $medicine['indication']?>"/></td>
+                <td><input name="indication" value="<?= $medicine['INDICATION']?>"/></td>
                 
             </tr>
             <tr>
                 <td>Generic</td>
-                <td><input name="generic" value="<?= $medicine['generic']?>"/></td>
+                <td><input name="generic" value="<?= $medicine['GENERIC']?>"/></td>
                 
             </tr>
             <tr>
                 <td>Price</td>
-                <td><input name="price" value="<?= $medicine['price']?>"/></td>
+                <td><input name="price" value="<?= $medicine['PRICE']?>"/></td>
                 
             </tr>
             <tr>
                 <td>Quantity</td>
-                <td><input name="quantity" value="<?= $medicine['quantity']?>"/></td>
+                <td><input name="quantity" value="<?= $medicine['QUANTITY']?>"/></td>
                 
             </tr>
         </table>
